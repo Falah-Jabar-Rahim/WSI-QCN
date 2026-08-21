@@ -11,7 +11,6 @@ The quality assessment model is first applied [WSI-SmartTiling](https://github.c
 ### 2. Color Normalization (ColorNorm)
 The retained image tiles are then processed using the color normalization pipeline provided in this repository. This step reduces stain and color variability across H&E images, producing standardized image tiles that can be directly used for downstream tasks such as nuclei detection, segmentation, classification, and quantitative analysis.
 
-
 # Setting Up the Pipeline:
 1. System requirements:
 - Ubuntu 20.04 or 22.04
@@ -43,6 +42,59 @@ pip install -r requirements.txt
 ```bash
 python test_installation.py
 ```
+
+
+## Supported methods
+
+| name                 | mode       | framework  | needs a target/reference | needs a checkpoint |
+|----------------------|------------|------------|---------------------------|---------------------|
+| `ruifrok`            | sequential | numpy      | yes (`target`)             | no |
+| `vahadane`           | sequential | numpy      | yes (`target`)             | no |
+| `histogram_matching`  | sequential | numpy      | yes (`target`)             | no |
+| `mean_std`           | sequential | numpy      | no                          | no |
+| `macenko`            | sequential | torch      | yes (`target`)             | no |
+| `reinhard`           | sequential | torch      | yes (`target`)             | no |
+| `multi_macenko`      | sequential | torch      | yes (`targets`, multiple)  | no |
+| `staingan`            | batch      | torch      | no                          | yes |
+| `stainnet`            | batch      | torch      | no                          | yes |
+| `sastaindiff`          | batch      | torch      | no                          | yes |
+| `cyclegan`             | batch      | tensorflow | no                          | yes |
+| `densepix2pix`         | batch      | tensorflow | no                          | yes |
+
+Run `python main.py --list` to see this from the CLI, with each method's mode.
+
+## Data & checkpoints
+
+None of the model weights or image data are tracked in git (see
+`.gitignore`) - set these up locally:
+
+- **Input images:** put them in `data/input/<your_folder>/` and
+  point `source_directory` in `main.py` (or `--input-dir`) at it.
+- **Reference/target images** (for `ruifrok`, `vahadane`,
+  `histogram_matching`, `macenko`, `reinhard`): put them in
+  `data/reference/`.
+- **StainGAN / StainNet checkpoints:** `.pth` files under
+  `StainNet/checkpoints/...` - update the paths in `main.py` to
+  match your files.
+- **SAStainDiff checkpoint:** a `.pt` file under
+  `SAStainDiff/checkpoint/...`.
+- **CycleGan / DensePix2Pix:** each is an "experiment folder"
+  produced by the separate GAN training pipeline
+  (`execute.py train`):
+  ```
+  gan_experiments/<exp_name>/
+      config.json              # exp_type, normalization, ...
+      checkpoint/
+          epoch.040.index
+          epoch.040.data-00000-of-00001
+  ```
+  Point `cyclegan_exp_path`/`densepix2pix_exp_path` and
+  `cyclegan_epoch`/`densepix2pix_epoch` in `main.py` at these.
+
+Checkpoints are typically too large for a normal git repo - keep
+them out of version control and distribute them separately (a
+release asset, Git LFS, or a shared drive link), documenting where
+teammates should download them to.
 
 
 # Usage
