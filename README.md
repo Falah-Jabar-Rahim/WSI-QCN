@@ -21,7 +21,7 @@ The retained image tiles are then processed using the color normalization pipeli
 2. QA pipline
   - For WSI quality assessment and tile generation, refer to [WSI-SmartTiling](https://github.com/Falah-Jabar-Rahim/Fully-Automatic-Content-Aware-Tiling-Pipeline-for-WSIs) to run the piline 
 
-2. ColorNorm pipline:
+3. ColorNorm pipline:
 ```bash
 - Clone the repo
 git clone <your-repo-url>
