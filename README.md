@@ -69,39 +69,27 @@ python test_installation.py
 
 Run `python main.py --list` to see this from the CLI, with each method's mode.
 
-## Data & checkpoints
+## Pretrained Model Checkpoints
+The pretrained model checkpoints are available on Hugging Face:
+**[WSI-QCN Checkpoints](https://huggingface.co/jwtyar/WSI-QCN/tree/main)**
 
-None of the model weights or image data are tracked in git (see
-`.gitignore`) - set these up locally:
+Download the required checkpoint files and place them in the corresponding directories:
 
-- **Input images:** put them in `data/input/<your_folder>/` and
-  point `source_directory` in `main.py` (or `--input-dir`) at it.
-- **Reference/target images** (for `ruifrok`, `vahadane`,
-  `histogram_matching`, `macenko`, `reinhard`): put them in
-  `data/reference/`.
-- **StainGAN / StainNet checkpoints:** `.pth` files under
-  `StainNet/checkpoints/...` - update the paths in `main.py` to
-  match your files.
-- **SAStainDiff checkpoint:** a `.pt` file under
-  `SAStainDiff/checkpoint/...`.
-- **CycleGan / DensePix2Pix:** each is an "experiment folder"
-  produced by the separate GAN training pipeline
-  (`execute.py train`):
-  ```
-  gan_experiments/<exp_name>/
-      config.json              # exp_type, normalization, ...
-      checkpoint/
-          epoch.040.index
-          epoch.040.data-00000-of-00001
-  ```
-  Point `cyclegan_exp_path`/`densepix2pix_exp_path` and
-  `cyclegan_epoch`/`densepix2pix_epoch` in `main.py` at these.
+```text
+WSI-QCN/
+├── methods/
+│   ├── GanStainNorm/
+│   │   └── checkpoints/
+│   ├── SAStainDiff/
+│   │   └── checkpoint/
+│   └── StainNet/
+│       └── checkpoints/
+```
+Ensure that each checkpoint is copied into the appropriate folder before running the pipeline.
 
-Checkpoints are typically too large for a normal git repo - keep
-them out of version control and distribute them separately (a
-release asset, Git LFS, or a shared drive link), documenting where
-teammates should download them to.
+- **Input images:** Place your input images in `data/input/<your_folder>/`, then set `source_directory` in `main.py` or specify the folder using the `--input-dir` argument.
 
+- **Reference (target) images:** For stain normalization methods that require a reference image (`ruifrok`, `vahadane`, `histogram_matching`, `macenko`, and `reinhard`), place the reference image(s) in `data/reference/`.
 
 # Usage
 
