@@ -1,4 +1,6 @@
 # ColorNorm
+![WSI-QA](./Figs/Fig1.png)
+
 A pipeline for running and comparing color normalization methods on histology (H&E) images. 
 12 methods across two families:
 - 7 classical methods — Macenko, Reinhard, Multi-Macenko, Vahadane, Ruifrok, histogram matching, and mean/std normalization. Each estimates its stain reference from the target image once per run (cached), then applies it to every source image.
