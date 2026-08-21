@@ -1,7 +1,4 @@
-# ColorNorm
+# H&E-QCN
 ![WSI-QA](./figs/fig.1.png)
 
-A pipeline for running and comparing color normalization methods on histology (H&E) images. 
-12 methods across two families:
-- 7 classical methods — Macenko, Reinhard, Multi-Macenko, Vahadane, Ruifrok, histogram matching, and mean/std normalization. Each estimates its stain reference from the target image once per run (cached), then applies it to every source image.
-- 5 neural network methods — StainGAN, StainNet, SAStainDiff (diffusion-based), CycleGAN, and DensePix2Pix. These are fully convolutional models with no cross-image statistics, so same-shape images are automatically grouped and pushed through the model together in batches instead of one at a time.
+The pipeline begins with an input whole-slide image (WSI), followed by a quality assessment (QA) stage that identifies and retains high-quality tissue tiles while excluding low-quality regions affected by artifacts, blur, background, or insufficient tissue content. The selected tiles are then processed using one of 12 color normalization methods, including traditional approaches (Ruifrok, Vahadane, Histogram Matching, Mean-Std, Macenko, Reinhard, and Multi-Macenko) and deep learning-based methods (StainGAN, StainNet, Sastaindiff, CycleGAN, and Pix2Pix), to reduce stain variability and improve color consistency. The resulting normalized images provide standardized inputs for a wide range of deep learning-based computational pathology tasks, such as nuclei detection, segmentation, classification, and quantitative analysis.
