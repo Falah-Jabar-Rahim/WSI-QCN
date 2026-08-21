@@ -297,7 +297,7 @@ if __name__ == "__main__":
     # =========================================================
     # Input folder containing source images
     # =========================================================
-    source_directory = Path("data/input/Panoptil_images_HE_test")
+    source_directory = Path("data/input/test_example")
 
     # =========================================================
     # Reference images
