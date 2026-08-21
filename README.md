@@ -25,7 +25,7 @@ The retained image tiles are then processed using the color normalization pipeli
 - Clone the repo
 ```bash
 git clone https://github.com/Falah-Jabar-Rahim/WSI-QCN.git
-cd WSI-QCN-main
+cd WSI-QCN
 ```
 - Create the conda environment
 ```bash
