@@ -5,23 +5,23 @@
 
 This pipeline consists of two sequential steps designed to generate high-quality, standardized H&E image tiles for downstream deep learning applications.
 
-### 1. Quality Assessment (QA)
+## 1. Quality Assessment (QA)
 The quality assessment model is first applied [WSI-SmartTiling](https://github.com/Falah-Jabar-Rahim/Fully-Automatic-Content-Aware-Tiling-Pipeline-for-WSIs) to the whole-slide images (WSIs) to identify and remove low-quality regions (e.g., background, blur, artifacts, or out-of-focus areas). Only high-quality tissue tiles are retained and exported for the next preprocessing stage.
 
-### 2. Color Normalization (ColorNorm)
+## 2. Color Normalization (ColorNorm)
 The retained image tiles are then processed using the color normalization pipeline provided in this repository. This step reduces stain and color variability across H&E images, producing standardized image tiles that can be directly used for downstream tasks such as nuclei detection, segmentation, classification, and quantitative analysis.
 
 # Setting Up the Pipeline:
 1. System requirements:
-- Ubuntu 20.04 or 22.04
-- CUDA version: 12.2
-- Python version: 3.9 (using conda environments)
-- Anaconda version 23.7.4
+- Ubuntu >= 20.04 
+- CUDA version >= 12.2
+- Python version >= 3.9
+- Anaconda version >= 23.7.4
+
 2. QA:
   - For WSI quality assessment and tile generation, refer to [WSI-SmartTiling](https://github.com/Falah-Jabar-Rahim/Fully-Automatic-Content-Aware-Tiling-Pipeline-for-WSIs) 
 
 3. ColorNorm:
-
 - Clone the repo
 ```bash
 git clone https://github.com/Falah-Jabar-Rahim/WSI-QCN.git
@@ -42,15 +42,13 @@ pip install -r requirements.txt
 **Note:** PyTorch version should matches your CUDA driver. Check your CUDA version with `nvidia-smi`, then follow the official installation [guide](https://pytorch.org/get-started/locally/)
 
 4. Verify Installation
-
 - Run the following command to verify that all dependencies have been installed correctly:
-
 ```bash
 python test_installation.py
 ```
 
 
-## Supported methods
+# Color Normalization Methods
 
 | name                 | mode       | framework  | needs a target/reference | needs a checkpoint |
 |----------------------|------------|------------|---------------------------|---------------------|
@@ -60,7 +58,7 @@ python test_installation.py
 | `mean_std`           | sequential | numpy      | no                          | no |
 | `macenko`            | sequential | torch      | yes (`target`)             | no |
 | `reinhard`           | sequential | torch      | yes (`target`)             | no |
-| `multi_macenko`      | sequential | torch      | yes (`targets`, multiple)  | no |
+| `multi_macenko`      | sequential | torch      | yes (`targets`)             | no |
 | `staingan`            | batch      | torch      | no                          | yes |
 | `stainnet`            | batch      | torch      | no                          | yes |
 | `sastaindiff`          | batch      | torch      | no                          | yes |
@@ -69,12 +67,11 @@ python test_installation.py
 
 Run `python main.py --list` to see this from the CLI, with each method's mode.
 
-## Pretrained Model Checkpoints
+# Pretrained Model Checkpoints
 The pretrained model checkpoints are available on Hugging Face:
 **[WSI-QCN Checkpoints](https://huggingface.co/jwtyar/WSI-QCN/tree/main)**
 
 Download the required checkpoint files and place them in the corresponding directories:
-
 ```text
 WSI-QCN/
 ├── methods/
@@ -86,46 +83,37 @@ WSI-QCN/
 │       └── checkpoints/
 ```
 Ensure that each checkpoint is copied into the appropriate folder before running the pipeline.
-
 - **Input images:** Place your input images in `data/input/<your_folder>/`, then set `source_directory` in `main.py` or specify the folder using the `--input-dir` argument.
-
 - **Reference (target) images:** For stain normalization methods that require a reference image (`ruifrok`, `vahadane`, `histogram_matching`, `macenko`, and `reinhard`), place the reference image(s) in `data/reference/`.
 
 # Usage
-
 Run everything:
 ```bash
 python main.py
 ```
-
 Run one method:
 ```bash
 python main.py --method stainnet
 ```
-
 List available methods:
 ```bash
 python main.py --list
 ```
-
 Override the batch size (batch-capable methods only - ignored for
 sequential ones):
 ```bash
 python main.py --method sastaindiff --batch-size 2
 ```
-
 Override input/output folders:
 ```bash
 python main.py --input-dir data/input/my_images --output-dir results/run_1
 ```
-
 Combine as needed:
 ```bash
 python main.py --method all --batch-size 8 --input-dir data/input/test_set
 ```
 
 # Output
-
 Each method writes to its own subfolder, so the same image can be
 compared across methods:
 ```
@@ -141,5 +129,4 @@ results/
 TBD
 
 # Contact:
-
 If you have any questions or comments, please feel free to contact: falah.rahim@unn.no
