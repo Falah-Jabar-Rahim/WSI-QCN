@@ -32,7 +32,11 @@ cd WSI-QCN
 - Create the conda environment
 ```bash
 conda create -n WSI-QCN python=3.10
+```
+```bash
 conda activate WSI-QCN
+```
+```bash
 pip install -r requirements.txt
 ```
 **Note:** PyTorch version should matches your CUDA driver. Check your CUDA version with `nvidia-smi`, then follow the official installation [guide](https://pytorch.org/get-started/locally/)
