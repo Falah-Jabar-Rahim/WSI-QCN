@@ -1,0 +1,33 @@
+
+# Core
+numpy
+scipy
+pandas
+matplotlib
+tqdm
+Pillow
+PyYAML
+
+# Image processing
+opencv-python
+scikit-image
+openslide-python
+tifffile
+
+# Deep learning
+torch
+torchvision
+timm
+kornia
+torchstain
+albumentations
+einops
+
+# Computational pathology
+tiatoolbox
+staintools
+
+# Utilities
+omegaconf
+huggingface_hub
+blobfile
