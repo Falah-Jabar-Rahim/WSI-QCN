@@ -1,5 +1,5 @@
 # ColorNorm
-![WSI-QA](./figs/Fig1.png)
+![WSI-QA](./figs/Fig.1.png)
 
 A pipeline for running and comparing color normalization methods on histology (H&E) images. 
 12 methods across two families:
