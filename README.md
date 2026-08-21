@@ -18,34 +18,82 @@ The retained image tiles are then processed using the color normalization pipeli
 - CUDA version: 12.2
 - Python version: 3.9 (using conda environments)
 - Anaconda version 23.7.4
-2. QA pipline
-  - For WSI quality assessment and tile generation, refer to [WSI-SmartTiling](https://github.com/Falah-Jabar-Rahim/Fully-Automatic-Content-Aware-Tiling-Pipeline-for-WSIs) to run the piline 
+2. QA:
+  - For WSI quality assessment and tile generation, refer to [WSI-SmartTiling](https://github.com/Falah-Jabar-Rahim/Fully-Automatic-Content-Aware-Tiling-Pipeline-for-WSIs) 
 
-3. ColorNorm pipline:
-```bash
+3. ColorNorm:
+
 - Clone the repo
-git clone <your-repo-url>
-cd <your-repo-name>
-
-- Create the conda environment (just Python + pip - see step 3)
-conda env create -f environment.yml
+```bash
+git clone https://github.com/Falah-Jabar-Rahim/WSI-QCN.git
+cd WSI-QCN-main
+```
+- Create the conda environment
+```bash
+conda env create -f environment.yml 
 conda activate WSI-QCN
-
-- Install PyTorch matching your CUDA driver.
-Check your driver's CUDA version first:
-nvidia-smi
-- Then install the matching build - for CUDA 12.x drivers:
-pip install torch==2.5.1 torchvision==0.20.1 \
-    --index-url https://download.pytorch.org/whl/cu124
-(CPU-only, or a different CUDA version? see
-https://pytorch.org/get-started/locally/ for the right command)
-- Install everything else (TensorFlow, tiatoolbox, OpenCV, ...)
 pip install -r requirements.txt
+```
+**Note:** PyTorch version should matches your CUDA driver. Check your CUDA version with `nvidia-smi`, then follow the official installation [guide](https://pytorch.org/get-started/locally/)
+
+4. Verify Installation
+
+- Run the following command to verify that all dependencies have been installed correctly:
+
+```bash
+python test_installation.py
 ```
 
 
-- Activate the environment:
-  `conda activate WSISmartTiling`
+# Usage
 
-- Install required packages:
-  `pip install -r requirements.txt`
+Run everything:
+```bash
+python main.py
+```
+
+Run one method:
+```bash
+python main.py --method stainnet
+```
+
+List available methods:
+```bash
+python main.py --list
+```
+
+Override the batch size (batch-capable methods only - ignored for
+sequential ones):
+```bash
+python main.py --method sastaindiff --batch-size 2
+```
+
+Override input/output folders:
+```bash
+python main.py --input-dir data/input/my_images --output-dir results/run_1
+```
+
+Combine as needed:
+```bash
+python main.py --method all --batch-size 8 --input-dir data/input/test_set
+```
+
+# Output
+
+Each method writes to its own subfolder, so the same image can be
+compared across methods:
+```
+results/
+    macenko_torch/img001.png
+    stainnet/img001.png
+    cyclegan/img001.png
+    ...
+```
+
+# Citation:
+
+TBD
+
+# Contact:
+
+If you have any questions or comments, please feel free to contact: falah.rahim@unn.no
