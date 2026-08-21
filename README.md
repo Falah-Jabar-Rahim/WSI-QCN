@@ -29,7 +29,7 @@ cd <your-repo-name>
 
 - Create the conda environment (just Python + pip - see step 3)
 conda env create -f environment.yml
-conda activate ColorNorm
+conda activate WSI-QCN
 
 - Install PyTorch matching your CUDA driver.
 Check your driver's CUDA version first:
