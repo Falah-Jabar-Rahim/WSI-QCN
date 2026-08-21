@@ -29,7 +29,7 @@ cd WSI-QCN
 ```
 - Create the conda environment
 ```bash
-conda env create -f environment.yml 
+conda create -n WSI-QCN python=3.10
 conda activate WSI-QCN
 pip install -r requirements.txt
 ```
