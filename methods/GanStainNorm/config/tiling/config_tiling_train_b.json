@@ -1,0 +1,33 @@
+{
+    "data_source": "/scratch/project_2000667/staining-qc/wsi_wbg_20x/tissue_b",
+    "output_root": "/scratch/project_2000667/staining-qc/wsi_tiles/wsi_tiles_b/",
+    "tar_wrapper": true,
+    "tile_size": 512,
+    "stride": 256,
+    "tile_format": "jpg",
+    "masked_tiles": true,
+    "acceptable_tile_percentage": 10.0,
+    "image_list": [
+        {
+            "image_type": "source",
+            "dataset_type": "train",
+            "images":[
+                "b_5873_HE_2019-12-13_12_19_04.tif",
+                "b_35512_HE_2019-12-04_11_39_38.tif",
+                "b_33050_HE_2019-12-04_11_43_24.tif",
+                "b_1126_A_HE_2019-12-04_11_20_37.tif",
+                "b_1811_HE_2019-12-04_12_11_59.tif",
+                "b_1283_HE_2019-12-04_11_47_38.tif",
+                "b_5997_HE_2019-12-13_12_22_15.tif",
+                "b_9056_HE_2019-12-04_13_05_10.tif"
+            ]
+        },
+        {
+            "image_type": "target",
+            "dataset_type": "train",
+            "images":[
+                "b_3111_HE_2019-12-04_11_55_54.tif"
+            ]
+        }
+    ]
+}

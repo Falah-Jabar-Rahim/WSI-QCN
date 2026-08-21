@@ -1,0 +1,41 @@
+{
+    "exp_type": "CycleGan",
+    "data_root": "",
+    "batch_size": 2,
+    "input_img_dim": [512, 512, 3],
+    "epochs": 40,
+    "tiles_percentage_per_sample": 75,
+    "val_tiles_percentage_per_sample": 15,
+    "val_plot_count": 2,
+    "data_loader_type": "unpaired",
+    "normalization": "instancenorm",
+    "use_pix2pix_components": false,
+    "multi_gpu": false,
+    "train": 
+        {
+            "source": [
+                "a_3111_HE_2019-12-04_11_55_54.tif",
+                "a_34073_HE_2019-12-04_12_50_27.tif",
+                "a_34087_HE_2019-12-04_13_11_23.tif",
+                "a_1199_HE_2019-12-04_12_02_56.tif",
+                "a_34060_HE_2019-12-04_12_46_53.tif",
+                "a_3148_HE_2019-12-04_11_06_47.tif",
+                "a_3146_HE_2019-12-04_10_58_01.tif",
+                "a_1281_HE_2019-12-04_11_57_26.tif"
+            ],
+            "target": [
+                "a_90532_HE_2019-12-04_12_24_54.tif",
+                "a_90532_HE_2019-12-04_12_24_54.tif",
+                "a_90532_HE_2019-12-04_12_24_54.tif",
+                "a_90532_HE_2019-12-04_12_24_54.tif",
+                "a_90532_HE_2019-12-04_12_24_54.tif",
+                "a_90532_HE_2019-12-04_12_24_54.tif",
+                "a_90532_HE_2019-12-04_12_24_54.tif",
+                "a_90532_HE_2019-12-04_12_24_54.tif"
+            ]
+        },
+    "augmentation": {
+        "sample_percentage": 50,
+        "augmentation_types": ["flip", "rotate", "zoom"]
+    }
+}

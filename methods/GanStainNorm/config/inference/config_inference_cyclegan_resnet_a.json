@@ -1,0 +1,22 @@
+{
+    "data_root": "",
+    "tar_wrapper": true,
+    "epochs": [
+        40
+    ],
+    "train_img_dim": [
+        512,
+        512,
+        3
+    ],
+    "inference_img_dim": [
+        256,
+        256,
+        3
+    ],
+    "test": {
+        "source":["img.png"],
+
+        "target": []
+    }
+}

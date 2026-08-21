@@ -1,0 +1,26 @@
+{
+    "exp_type": "DensePix2Pix",
+    "data_root": "",
+    "batch_size": 16,
+    "input_img_dim": [512, 512, 3],
+    "epochs": 40,
+    "tiles_percentage_per_sample": 75,
+    "val_tiles_percentage_per_sample": 15,
+    "paired_data_percentage": 100,
+    "data_loader_type": "paired",
+    "val_plot_count": 4,
+    "multi_gpu": false,
+    "train": 
+        {
+            "source": [
+                "c_34080_HE_2019-12-04_13_21_03.tif"
+            ],
+            "target": [
+                "c_34080_HE_2019-12-04_13_21_03.tif"
+            ]
+        },
+    "augmentation": {
+        "sample_percentage": 50,
+        "augmentation_types": ["flip", "rotate", "zoom"]
+    }
+}

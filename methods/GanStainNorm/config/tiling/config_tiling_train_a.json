@@ -1,0 +1,33 @@
+{
+    "data_source": "input/dataset/tissue_a",
+    "output_root": "input/dataset/tissue_a_tiles/",
+    "tar_wrapper": true,
+    "tile_size": 512,
+    "stride": 256,
+    "tile_format": "png",
+    "masked_tiles": true,
+    "acceptable_tile_percentage": 10.0,
+    "image_list": [
+        {
+            "image_type": "source",
+            "dataset_type": "train",
+            "images":[
+                "a_3111_HE_2019-12-04_11_55_54.tif",
+                "a_34073_HE_2019-12-04_12_50_27.tif",
+                "a_34087_HE_2019-12-04_13_11_23.tif",
+                "a_1199_HE_2019-12-04_12_02_56.tif",
+                "a_34060_HE_2019-12-04_12_46_53.tif",
+                "a_3148_HE_2019-12-04_11_06_47.tif",
+                "a_3146_HE_2019-12-04_10_58_01.tif",
+                "a_1281_HE_2019-12-04_11_57_26.tif"
+            ]
+        },
+        {
+            "image_type": "target",
+            "dataset_type": "train",
+            "images":[
+                "a_90532_HE_2019-12-04_12_24_54.tif"
+            ]
+        }
+    ]
+}
