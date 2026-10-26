@@ -65,7 +65,7 @@ python test_installation.py
 | `cyclegan`             | batch      | tensorflow | no                          | yes |
 | `densepix2pix`         | batch      | tensorflow | no                          | yes |
 
-Run `python main.py --list` to see this from the CLI, with each method's mode.
+Run `python main.py --list` to see this from the CLI, with each method's mode. The input tile dimensions should be divisible by 2; otherwise, some deep-learning methods may not work correctly.
 
 # Pretrained Model Checkpoints
 The pretrained model checkpoints are available on Hugging Face:
